@@ -1,8 +1,40 @@
 //*when first starting the page, they see an intro message
-//in the html, create div with intro
+//in the html, create div with intro <"#intro-message">
 
 //*variable to store the current count, set at zero for default
+var currentCount = 0;
+
 //variable to store the array of the questions
+var questions = [
+    {
+        question: "Commonly used data types DO NOT include:",
+        answers: ["strings", "booleans", "alerts", "numbers"],
+        correctAnswer: 2,
+    },
+    {
+        question: "The condition in an if / else statement is enclosed within ____",
+        answers: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        correctAnswer: 2,
+    },
+    {
+        question: "Arrays in JavaScript can be used to store:",
+        answers: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        correctAnswer: 3,
+    },
+    {
+        question: "String values must be enclosed within ____ when being assigned to variables",
+        answers: ["quotes", "curly brackets", "commas", "parentheses"],
+        correctAnswer: 0,
+    },
+    {
+
+        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answers: ["JavaScript", "terminal / bash", "for loops", "console.log"],
+        correctAnswer: 3,
+    }
+
+];
+
 //variable to store the index of the current question they are answering
 
 
