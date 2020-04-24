@@ -1,5 +1,9 @@
+body {
+    font-family: 'Baloo Bhaina 2', cursive;
+}
+
 header {
-    margin: 10px;
+    margin: 0px;
     display: block;
 }
 #highscore-link {
@@ -11,5 +15,7 @@ header {
 }
 
 .container {
+    clear: both;
+    padding: 25px;
     text-align: center;
 }
