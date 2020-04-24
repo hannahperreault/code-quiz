@@ -1,0 +1,15 @@
+header {
+    margin: 10px;
+    display: block;
+}
+#highscore-link {
+    float: left;
+}
+
+#timer {
+    float: right;
+}
+
+.intro-div {
+    text-align: center;
+}
