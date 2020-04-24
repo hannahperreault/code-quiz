@@ -2,7 +2,8 @@
 //in the html, create div with intro <"#intro-message">
 
 //*variable to store the current count, set at zero for default
-var currentCount = 0;
+var timerElement = document.querySelector("#timer");
+var secondsLeft = 75;
 
 //variable to store the array of the questions
 var questions = [
@@ -35,7 +36,29 @@ var questions = [
 
 ];
 
-//variable to store the index of the current question they are answering
+$("#question-message").hide();
+
+//NEED *variable to store the index of the current question they are answering
+
+$("#btn-start").on("click", function () {
+    renderQuestion();
+    $("#intro-message").hide();
+    var timerInterval = setInterval(function () {
+        secondsLeft--;
+        $(timerElement).text("Time Left: " + secondsLeft);
+
+        // if (secondsLeft === 0) {
+        //     clearInterval(timerInterval);
+        //     endQuiz();
+        // }
+
+    }, 1000);
+});
+
+function renderQuestion() {
+    $("#question-message").show();
+
+};
 
 
 //*click button to start
