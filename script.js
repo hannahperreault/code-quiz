@@ -36,7 +36,7 @@ var questions = [
 
 ];
 
-$("#question-message").hide();
+$("#question-message, #end-message").hide();
 
 //NEED *variable to store the index of the current question they are answering
 
@@ -47,10 +47,10 @@ $("#btn-start").on("click", function () {
         secondsLeft--;
         $(timerElement).text("Time Left: " + secondsLeft);
 
-        // if (secondsLeft === 0) {
-        //     clearInterval(timerInterval);
-        //     endQuiz();
-        // }
+        if (secondsLeft === 0) {
+            clearInterval(timerInterval);
+            endQuiz();
+        }
 
     }, 1000);
 });
@@ -60,6 +60,14 @@ function renderQuestion() {
 
 };
 
+function endQuiz() {
+    $("#question-message").hide();
+    $("#end-message").show();
+};
+
+// questions.forEach(question) {
+
+// };
 
 //*click button to start
 //when user clicks start, hide the intro div
@@ -86,6 +94,7 @@ function renderQuestion() {
     //create function for end game by either condition. call the function to display end page if:
 //user answers all questions OR
 //time runs out
+
 
 //when game ends, allow user to enter their initials and store their score
 //redirect user to high scores page, which dsiplays all high scores
