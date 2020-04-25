@@ -4,33 +4,34 @@
 //*variable to store the current count, set at zero for default
 var timerElement = document.querySelector("#timer");
 var secondsLeft = 75;
+var currentQuestion = 0;
 
 //variable to store the array of the questions
 var questions = [
     {
-        question: "Commonly used data types DO NOT include:",
-        answers: ["strings", "booleans", "alerts", "numbers"],
+        prompt: "Commonly used data types DO NOT include:",
+        answer: ["strings", "booleans", "alerts", "numbers"],
         correctAnswer: 2,
     },
     {
-        question: "The condition in an if / else statement is enclosed within ____",
-        answers: ["quotes", "curly brackets", "parentheses", "square brackets"],
+        prompt: "The condition in an if / else statement is enclosed within ____",
+        answer: ["quotes", "curly brackets", "parentheses", "square brackets"],
         correctAnswer: 2,
     },
     {
-        question: "Arrays in JavaScript can be used to store:",
-        answers: ["numbers and strings", "other arrays", "booleans", "all of the above"],
+        prompt: "Arrays in JavaScript can be used to store:",
+        answer: ["numbers and strings", "other arrays", "booleans", "all of the above"],
         correctAnswer: 3,
     },
     {
-        question: "String values must be enclosed within ____ when being assigned to variables",
-        answers: ["quotes", "curly brackets", "commas", "parentheses"],
+        prompt: "String values must be enclosed within ____ when being assigned to variables",
+        answer: ["quotes", "curly brackets", "commas", "parentheses"],
         correctAnswer: 0,
     },
     {
 
-        question: "A very useful tool used during development and debugging for printing content to the debugger is:",
-        answers: ["JavaScript", "terminal / bash", "for loops", "console.log"],
+        prompt: "A very useful tool used during development and debugging for printing content to the debugger is:",
+        answer: ["JavaScript", "terminal / bash", "for loops", "console.log"],
         correctAnswer: 3,
     }
 
@@ -58,16 +59,43 @@ $("#btn-start").on("click", function () {
 function renderQuestion() {
     $("#question-message").show();
 
+    if (currentQuestion > 4) {
+        endQuiz();
+        return;
+    }
+
+    //  questions[currentQuestion].prompt
+    var questionElement = $("<h2>");
+    questionElement.text(questions[currentQuestion].prompt);
+    $("#question-message").append(questionElement);
+
+
+
+    //     questions.forEach(function (questions) {
+    //     var questionElement = $("<hr>");
+    // questionElement.text(questions.prompt);
+    //     $("#question-text").text(questionElement);
+
+    // });
 };
 
 function endQuiz() {
     $("#question-message").hide();
     $("#end-message").show();
+
+
 };
 
-// questions.forEach(question) {
 
-// };
+    // questions.forEach(question) {
+    //     var questionText = $("<h2>");
+    //     var answerBtn = $("<button>");
+    //     answerBtn.addClass("answer-button");
+    //     answerBtn.attr("data-answer", questions[question]);
+
+    //     $("#question-text").text(questionText);
+    //     console.log(questionText);
+    // };
 
 //*click button to start
 //when user clicks start, hide the intro div
