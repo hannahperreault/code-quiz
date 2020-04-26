@@ -3,7 +3,7 @@ var secondsLeft = 75;
 var currentQuestion = 0;
 var currentAnswer = 0;
 var totalScore = 0;
-
+var scores;
 
 var questions = [
     {
@@ -133,17 +133,42 @@ function endQuiz() {
     $("#question-message").hide();
     $("#end-message").show();
     $("#final-score").text("Your final score is: " + totalScore);
+    $("#submit").on("click", function () {
+        event.preventDefault();
+        saveScore();
+        window.location = "highscores.html";
+
+    })
+};
+
+
+function saveScore() {
+    var scoreObject = [
+        {
+            name: document.querySelector("#name").value,
+            score: totalScore,
+        }
+    ]
+    console.log(scoreObject);
+
+    var scoresJSON = JSON.stringify(scoreObject);
+    localStorage.setItem("scores", scoresJSON);
+    scores = JSON.parse(localStorage.getItem("scores"));
+    console.log(scores);
+
+    // scores are saving in local storage properly. cannot figure out how to get the scores to display on the high scores page... below is the as far as i got :(
+
+
+    // scoreObject.forEach(function () {
+    //     var tableRowElement = $('<tr>');
+    //     var name = $('<td>').text(score.name);
+    //     var score = $('<td>').text(score.score);
+    //     tableRowElement.append(name);
+    //     tableRowElement.append(score);
+    //     $("#score-container").append(tableRowElement);
+
+    // });
 
 };
 
 
-
-
-
-
-
-
-
-
-//when game ends, allow user to enter their initials and store their score
-//redirect user to high scores page, which dsiplays all high scores
