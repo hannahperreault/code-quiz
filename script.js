@@ -2,6 +2,7 @@ var timerElement = document.querySelector("#timer");
 var secondsLeft = 75;
 var currentQuestion = 0;
 var currentAnswer = 0;
+var totalScore = 0;
 
 
 var questions = [
@@ -53,8 +54,8 @@ $("#btn-start").on("click", function () {
             clearInterval(timerInterval);
             endQuiz();
         }
-
     }, 1000);
+
 });
 
 function answerClicked() {
@@ -88,9 +89,9 @@ function showQuestion() {
     function checkCorrect() {
         if ($(this).data("attribute") === questions[currentQuestion].correctAnswer) {
             console.log("correct");
-            unhideCorrect();
+            answerCorrect();
         } else {
-            unhideWrong();
+            answerWrong();
         }
     }
     function nextQuestion() {
@@ -105,27 +106,34 @@ function showQuestion() {
     };
 };
 
-function unhideCorrect() {
+function answerCorrect() {
     $("#feedback").text("Correct!");
     $("#feedback").show();
     setTimeout(function () {
         $("#feedback").fadeOut();
     }, 650);
+    totalScore = Math.floor(totalScore + 10);
 
 };
 
-function unhideWrong() {
+function answerWrong() {
     $("#feedback").text("Wrong!");
     $("#feedback").show();
     setTimeout(function () {
         $("#feedback").fadeOut();
     }, 650);
+    secondsLeft = Math.floor(secondsLeft - 15);
+    if (secondsLeft <= 0) {
+        secondsLeft = 1
+    }
 
 };
 
 function endQuiz() {
     $("#question-message").hide();
     $("#end-message").show();
+    $("#final-score").text("Your final score is: " + totalScore);
+
 };
 
 
@@ -133,11 +141,6 @@ function endQuiz() {
 
 
 
-
-//once game starts, display with buttons for the answers
-///when clicked, determine if correct/in
-//use data attributes to tell if button clicked is right (with event listener)
-//display next wquestions, and display status of their answer for a short period of time
 
 
 
