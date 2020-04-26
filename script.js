@@ -1,14 +1,9 @@
-//*when first starting the page, they see an intro message
-//in the html, create div with intro <"#intro-message">
-
-//*variable to store the current count, set at zero for default
 var timerElement = document.querySelector("#timer");
 var secondsLeft = 75;
 var currentQuestion = 0;
 var currentAnswer = 0;
 
 
-//variable to store the array of the questions
 var questions = [
     {
         prompt: "Commonly used data types DO NOT include:",
@@ -41,15 +36,12 @@ var questions = [
 
 function onlyIntro() {
     $("#question-message, #end-message").hide();
-
 };
 function hideNonQuestions() {
     $("#intro-message, #end-message").hide();
-
 };
 
 onlyIntro();
-//NEED *variable to store the index of the current question they are answering
 
 $("#btn-start").on("click", function () {
     renderQuestion();
@@ -65,32 +57,44 @@ $("#btn-start").on("click", function () {
     }, 1000);
 });
 
-function showQuestion() {
-    var questionElement = $("#question-header");
-    questionElement.text(questions[currentQuestion].prompt);
-    // var answerElement1 = $("#btn-0");
-
-    for (var i = 0; i < 4; i++) {
-        var answerElement = $("<button>", {
-            "data-btn-index": i,
-        });
-        answerElement.text(questions[currentQuestion].answer[i]);
-        console.log(currentAnswer);
-        $("#question-message").append(answerElement);
-    }
-
+function answerClicked() {
 };
 
 function renderQuestion() {
     hideNonQuestions();
     $("#question-message").show();
-
-    if (currentQuestion > 4) {
-        endQuiz();
-        return;
-    }
     showQuestion();
 };
+
+function showQuestion() {
+    console.log(currentQuestion);
+
+    var questionElement = $("<h2>");
+    questionElement.text(questions[currentQuestion].prompt);
+    $("#question-message").append(questionElement);
+
+    for (var i = 0; i < 4; i++) {
+        var answerElement = $("<button>", {
+            "data-btn-index": i,
+            "class": "clicked-button",
+        });
+        answerElement.text(questions[currentQuestion].answer[i]);
+        $("#question-message").append(answerElement);
+    }
+    $("button").on("click", nextQuestion)
+    function nextQuestion() {
+        currentQuestion++;
+        $("#question-message").empty();
+        if (currentQuestion > 4) {
+            endQuiz();
+            return;
+        }
+        showQuestion();
+
+    };
+};
+
+
 
 function endQuiz() {
     $("#question-message").hide();
@@ -98,28 +102,8 @@ function endQuiz() {
 };
 
 
-    // questions.forEach(question) {
-    //     var questionText = $("<h2>");
-    //     var answerBtn = $("<button>");
-    //     answerBtn.addClass("answer-button");
-    //     answerBtn.attr("data-answer", questions[question]);
 
-    //     $("#question-text").text(questionText);
-    //     console.log(questionText);
-    // };
 
-//*click button to start
-//when user clicks start, hide the intro div
-//create setInterval of 75000ms 
-//update teh count to 75
-//every time the interval runs, we need to decrement the current count by 1, re-render the current count
-//
-
-//render the first question
-    //the question (string)
-    //array of possible answers
-    //correct answer (number, index of the answer of the possible answers)
-    //using DOM manip, create a new el with the questino info and display it on the screen appendChild.
 
 
 
@@ -129,10 +113,6 @@ function endQuiz() {
 //display next wquestions, and display status of their answer for a short period of time
 
 
-//end condition--
-    //create function for end game by either condition. call the function to display end page if:
-//user answers all questions OR
-//time runs out
 
 
 //when game ends, allow user to enter their initials and store their score
