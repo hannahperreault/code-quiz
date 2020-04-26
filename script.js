@@ -5,6 +5,8 @@
 var timerElement = document.querySelector("#timer");
 var secondsLeft = 75;
 var currentQuestion = 0;
+var currentAnswer = 0;
+
 
 //variable to store the array of the questions
 var questions = [
@@ -37,13 +39,20 @@ var questions = [
 
 ];
 
-$("#question-message, #end-message").hide();
+function onlyIntro() {
+    $("#question-message, #end-message").hide();
 
+};
+function hideNonQuestions() {
+    $("#intro-message, #end-message").hide();
+
+};
+
+onlyIntro();
 //NEED *variable to store the index of the current question they are answering
 
 $("#btn-start").on("click", function () {
     renderQuestion();
-    $("#intro-message").hide();
     var timerInterval = setInterval(function () {
         secondsLeft--;
         $(timerElement).text("Time Left: " + secondsLeft);
@@ -56,34 +65,36 @@ $("#btn-start").on("click", function () {
     }, 1000);
 });
 
+function showQuestion() {
+    var questionElement = $("#question-header");
+    questionElement.text(questions[currentQuestion].prompt);
+    // var answerElement1 = $("#btn-0");
+
+    for (var i = 0; i < 4; i++) {
+        var answerElement = $("<button>", {
+            "data-btn-index": i,
+        });
+        answerElement.text(questions[currentQuestion].answer[i]);
+        console.log(currentAnswer);
+        $("#question-message").append(answerElement);
+    }
+
+};
+
 function renderQuestion() {
+    hideNonQuestions();
     $("#question-message").show();
 
     if (currentQuestion > 4) {
         endQuiz();
         return;
     }
-
-    //  questions[currentQuestion].prompt
-    var questionElement = $("<h2>");
-    questionElement.text(questions[currentQuestion].prompt);
-    $("#question-message").append(questionElement);
-
-
-
-    //     questions.forEach(function (questions) {
-    //     var questionElement = $("<hr>");
-    // questionElement.text(questions.prompt);
-    //     $("#question-text").text(questionElement);
-
-    // });
+    showQuestion();
 };
 
 function endQuiz() {
     $("#question-message").hide();
     $("#end-message").show();
-
-
 };
 
 
