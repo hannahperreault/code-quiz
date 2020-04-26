@@ -88,6 +88,9 @@ function showQuestion() {
     function checkCorrect() {
         if ($(this).data("attribute") === questions[currentQuestion].correctAnswer) {
             console.log("correct");
+            unhideCorrect();
+        } else {
+            unhideWrong();
         }
     }
     function nextQuestion() {
@@ -102,7 +105,23 @@ function showQuestion() {
     };
 };
 
+function unhideCorrect() {
+    $("#feedback").text("Correct!");
+    $("#feedback").show();
+    setTimeout(function () {
+        $("#feedback").fadeOut();
+    }, 650);
 
+};
+
+function unhideWrong() {
+    $("#feedback").text("Wrong!");
+    $("#feedback").show();
+    setTimeout(function () {
+        $("#feedback").fadeOut();
+    }, 650);
+
+};
 
 function endQuiz() {
     $("#question-message").hide();
