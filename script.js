@@ -75,13 +75,21 @@ function showQuestion() {
 
     for (var i = 0; i < 4; i++) {
         var answerElement = $("<button>", {
-            "data-btn-index": i,
+            "data-attribute": i,
             "class": "clicked-button",
         });
         answerElement.text(questions[currentQuestion].answer[i]);
         $("#question-message").append(answerElement);
     }
-    $("button").on("click", nextQuestion)
+    $(".clicked-button").on("click", checkCorrect)
+
+    $(".clicked-button").on("click", nextQuestion)
+
+    function checkCorrect() {
+        if ($(this).data("attribute") === questions[currentQuestion].correctAnswer) {
+            console.log("correct");
+        }
+    }
     function nextQuestion() {
         currentQuestion++;
         $("#question-message").empty();
