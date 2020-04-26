@@ -21,4 +21,4 @@ This application is a timed code quiz with multiple-choice questions, using Java
 </ol>
 
 <h3>The following animation demonstrates the application functionality:</h3>
-![gif](code-quiz/demo.gif)
+![gif](demo.gif)
